@@ -142,6 +142,20 @@ class Data extends CoreHelper
     }
 
     /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getSidebarLayout( $storeId = null){
+        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/sidebar/sidebar_left_right', $storeId);
+        if($sideBarConfig == 0){
+            return \Mageplaza\Blog\Model\Config\Source\SideBarLR::LEFT;
+        } elseif($sideBarConfig == 1) {
+            return \Mageplaza\Blog\Model\Config\Source\SideBarLR::RIGHT;
+        }
+        return $sideBarConfig;
+    }
+
+    /**
      * @param $code
      * @param null $storeId
      * @return mixed
